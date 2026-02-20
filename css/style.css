@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+   
+    background-color: #E9D8A6;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 5rem;
+    background-color: #001219;
+    color: #fff;
+}
+
+hr{
+    background-color: #BB3E03;
+   border: none;
+    height: 10px;
+}
+
+h1{
+    font-size: 1rem;
+}
+
+main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    
+    
+}
+#tarefasAdd{
+    margin-top: 2rem;
+}
+
+#fundo{
+    margin: 80px;
+    filter: invert();
+    opacity: 0.5;
+}
+
+.ocultarFundo{
+    display: none;
+}
+
+#todo-contain{
+    
+    padding: 10px;
+    width: 350px;
+    
+    min-height: 400px;
+    margin-top: 2rem;
+    background-color: #0A9396;
+    border-radius: 4px;
+}
+
+#nomeProduto{
+    border-radius: 4px;
+    margin-left: 40px;
+    padding: 10px;
+    border: none;
+}
+
+#add{
+    border-radius: 4px;
+    border: none;
+    padding: 10px;
+    background-color: #005F73;
+    color: #fff;
+    font-weight: bolder;
+}
+
+
+.item-contain{
+    
+    
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 310px;
+    
+    margin:20px 0 0 10px;
+    
+}
+
+.item-contain p{
+    overflow-wrap: break-word;
+    width: 70%;
+    padding:7px;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.tarefaConcluida{
+    text-decoration: line-through;
+}
+
+.naoConcluida{
+    text-decoration: none;
+}
+
+.item-contain button{
+    padding: 5px;
+    width: 40px;
+    border-radius: 4px;
+    border: none;
+    text-align: center;
+    margin:0 0 0 5px;
+}
+
+.verificado{
+    background-color: #7CB518 !important;
+}
+
+#verificar{
+background-color: #EE9B00;
+}
+
+#lixeira{
+    
+    background-color: #AE2012;
+}
+
+#lixeira img{
+    filter: invert();
+}
+
+#verificar img{
+    filter: invert();
+}
