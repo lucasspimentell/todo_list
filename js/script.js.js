@@ -24,7 +24,7 @@ function fundoList() { //função que remove o icone de fundo quando não tem ne
 const creatItem = (nome, tarefaConcluida = false, save = true) => {
 
     lista.push(nome)
-    
+
     // criando um elemento HTML em texto para depois converter para HTML
     const template = `<div class="item-contain">
                 <p class="item-name naoConcluida"><span>${nome}</span></p>
@@ -32,11 +32,11 @@ const creatItem = (nome, tarefaConcluida = false, save = true) => {
                 <button class="apagar" id = "lixeira"><img src="img/lixeira-xmark.png" alt="lixeira" width="20px"></button>
             </div>`;
 
-    
+
     // convertendo o texto em html
     const parser = new DOMParser();
     const htmlTemplate = parser.parseFromString(template, "text/html");
-    
+
     //selecionando a div item-contain para depois na linha de baixo adicionala dentro do container todoContain
     const itemContain = htmlTemplate.querySelector(".item-contain");
     todoContain.appendChild(itemContain);
@@ -63,7 +63,7 @@ const creatItem = (nome, tarefaConcluida = false, save = true) => {
             itemName.classList.remove("naoConcluida")
             itemName.classList.add("tarefaConcluida")
             itemContain.classList.add("tarefaConcluida")
-            
+
         } else {
             imgConcluir.src = "img/quadrado.png"
             itemName.classList.add("naoConcluida")
@@ -85,7 +85,7 @@ const creatItem = (nome, tarefaConcluida = false, save = true) => {
         }
         console.log(lista);
 
-         //chamndo a função remover que ira mandar o dado para localstorage e lá esta como removido para quando for chamado pela função load
+        //chamndo a função remover que ira mandar o dado para localstorage e lá esta como removido para quando for chamado pela função load
         removeTodosLocalStorage(nome)
 
         //aplicando a função de tirar e colocar o fundo
@@ -117,14 +117,25 @@ const creatItem = (nome, tarefaConcluida = false, save = true) => {
 
 //Evento
 
-btnAdd.addEventListener("click", () => { // evento de adicionar o nome da tarefa e assim adicionando ao parametro da função creatItem
-
+btnAdd.addEventListener("click", (e) => { // evento de adicionar o nome da tarefa e assim adicionando ao parametro da função creatItem
+    e.target = "enter"
     const nomeProduto = produtoInput.value;
     creatItem(nomeProduto);
     console.log("Adicionado:" + lista)
     produtoInput.value = "";
+   
     fundoList();
 });
+
+const botaoEnter = () =>{
+    produtoInput.addEventListener("keyup",(e)=>{
+       if( e.key === "Enter"){
+
+        btnAdd.click()
+       }
+    });
+}
+
 
 
 
@@ -144,9 +155,9 @@ const loadTodos = () => {
     const todos = gettodosLocalStorage();
     todos.forEach((todo) => {
         creatItem(todo.nome, todo.tarefaConcluida, false)
-        
+
     });
-    
+
     fundoList();
 }
 
@@ -169,20 +180,21 @@ const removeTodosLocalStorage = (todoNome) => {
 
 const concluirTodosLocalStorage = (todoNome) => {
     const todos = gettodosLocalStorage();
-    const filterConcluidas = todos.map((todo) =>{
-        if(todo.nome === todoNome){
+    const filterConcluidas = todos.map((todo) => {
+        if (todo.nome === todoNome) {
             todo.tarefaConcluida = todo.tarefaConcluida === false ? true : false;
         }
 
         return todo
     });
-        
+
 
     localStorage.setItem("todo", JSON.stringify(filterConcluidas))
 
 
 }
 
+//Ativamos a função ao carregar o script
 
-
+botaoEnter();
 loadTodos();
